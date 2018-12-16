@@ -23,7 +23,7 @@ public class UserInfo
         this.modifyPwdFlag = obj.optBoolean("modifyPwdFlag");
         this.phone = obj.optString("phone");
         this.sameTimeSize = obj.optString("sameTimeSize");
-        this.status = obj.optString("status");
+        this.status = obj.optString("state");
         this.address = obj.optString("address");
     }
 

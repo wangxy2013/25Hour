@@ -227,6 +227,7 @@ public class OrderFragment3 extends BaseFragment  implements IRequestListener, P
         });
 
         mRecyclerView.setAdapter(mAdapter);
+        mHandler.sendEmptyMessage(GET_ORDER_LIST);
     }
 
 
@@ -261,7 +262,15 @@ public class OrderFragment3 extends BaseFragment  implements IRequestListener, P
     public void onResume()
     {
         super.onResume();
-        mHandler.sendEmptyMessage(GET_ORDER_LIST);
+    }
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //相当于Fragment的onResume
+            mHandler.sendEmptyMessage(GET_ORDER_LIST);
+        } else {
+            //相当于Fragment的onPause
+        }
     }
 
     @Override

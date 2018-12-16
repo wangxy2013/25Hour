@@ -131,7 +131,7 @@ public class OrderFragment4 extends BaseFragment  implements IRequestListener, P
                     mRefreshStatus = 0;
                     loadData();
 
-                    mHandler.sendEmptyMessageDelayed(GET_ORDER_LIST, 30 * 1000);
+                  //  mHandler.sendEmptyMessageDelayed(GET_ORDER_LIST, 30 * 1000);
 
 
                     break;
@@ -204,7 +204,16 @@ public class OrderFragment4 extends BaseFragment  implements IRequestListener, P
     public void onResume()
     {
         super.onResume();
-        mHandler.sendEmptyMessage(GET_ORDER_LIST);
+    }
+
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //相当于Fragment的onResume
+            mHandler.sendEmptyMessage(GET_ORDER_LIST);
+        } else {
+            //相当于Fragment的onPause
+        }
     }
     @Override
     protected void initViewData()
@@ -234,6 +243,7 @@ public class OrderFragment4 extends BaseFragment  implements IRequestListener, P
         });
 
         mRecyclerView.setAdapter(mAdapter);
+        mHandler.sendEmptyMessage(GET_ORDER_LIST);
     }
 
 

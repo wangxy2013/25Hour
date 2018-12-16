@@ -17,6 +17,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -97,7 +98,7 @@ public class MainActivity extends BaseActivity implements IRequestListener
     protected void initViews(Bundle savedInstanceState)
     {
         setContentView(R.layout.activity_main);
-        StatusBarUtil.setStatusBarBackground(this,R.drawable.main_bg);
+        StatusBarUtil.setStatusBarBackground(this, R.drawable.main_bg);
         StatusBarUtil.StatusBarLightMode(MainActivity.this, false);
     }
 
@@ -145,24 +146,24 @@ public class MainActivity extends BaseActivity implements IRequestListener
 
         requestLocationPermission();
 
-//        if (isLocServiceEnable(this))
-//        {
-//            locationService.start();// 定位SDK
-//            mHandler.sendEmptyMessageDelayed(UPLOAD_LOCATION, 60 * 1000);
-//        }
-//        else
-//        {
-//            DialogUtils.showToastDialog2Button(this, "未开启定位，请立即设置", new View.OnClickListener()
-//            {
-//                @Override
-//                public void onClick(View view)
-//                {
-//                    Intent intent = new Intent();
-//                    intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//                    startActivityForResult(intent, PRIVATE_CODE);
-//                }
-//            });
-//        }
+        //        if (isLocServiceEnable(this))
+        //        {
+        //            locationService.start();// 定位SDK
+        //            mHandler.sendEmptyMessageDelayed(UPLOAD_LOCATION, 60 * 1000);
+        //        }
+        //        else
+        //        {
+        //            DialogUtils.showToastDialog2Button(this, "未开启定位，请立即设置", new View.OnClickListener()
+        //            {
+        //                @Override
+        //                public void onClick(View view)
+        //                {
+        //                    Intent intent = new Intent();
+        //                    intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        //                    startActivityForResult(intent, PRIVATE_CODE);
+        //                }
+        //            });
+        //        }
     }
 
 
@@ -373,8 +374,8 @@ public class MainActivity extends BaseActivity implements IRequestListener
             Gson gson = new Gson();
             Map<String, String> postMap = new HashMap<>();
             postMap.put("json", gson.toJson(valuePairs));
-            DataRequest.instance().request(MainActivity.this, Urls.getUplaodLocationUrl(), this, HttpRequest.POST, "UPLOAD_LOCATION_REQUEST",
-                    postMap, new ResultHandler());
+            DataRequest.instance().request(MainActivity.this, Urls.getUplaodLocationUrl(), this, HttpRequest.POST, "UPLOAD_LOCATION_REQUEST", postMap, new
+                    ResultHandler());
         }
     }
 
@@ -399,5 +400,36 @@ public class MainActivity extends BaseActivity implements IRequestListener
         }
 
         return false;
+    }
+
+    /**
+     * 监听Back键按下事件,方法2:
+     * 注意:
+     * 返回值表示:是否能完全处理该事件
+     * 在此处返回false,所以会继续传播该事件.
+     * 在具体项目中此处的返回值视情况而定.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            DialogUtils.showToastDialog2Button(MainActivity.this, "是否退出骑手端APP", new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                   finish();
+
+                }
+            });
+
+            return false;
+        }
+        else
+        {
+            return super.onKeyDown(keyCode, event);
+        }
+
     }
 }

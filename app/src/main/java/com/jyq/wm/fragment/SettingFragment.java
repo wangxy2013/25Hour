@@ -41,8 +41,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private boolean voiceOpend = true;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
-            savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
 
         if (rootView == null)
@@ -85,8 +84,19 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initViewData()
     {
+        if (ConfigManager.instance().getVoiceIsOpend())
+        {
+            voiceOpend = true;
+            ivSwitch.setImageResource(R.drawable.ic_switch_on);
+        }
+        else
 
+        {
+            voiceOpend = false;
+            ivSwitch.setImageResource(R.drawable.ic_switch_off);
+        }
     }
+
 
     @Override
     public void onClick(View v)

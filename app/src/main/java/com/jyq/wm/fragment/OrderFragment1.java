@@ -173,9 +173,16 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
     public void onResume()
     {
         super.onResume();
-        mHandler.sendEmptyMessage(GET_ORDER_LIST);
     }
-
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //相当于Fragment的onResume
+            mHandler.sendEmptyMessage(GET_ORDER_LIST);
+        } else {
+            //相当于Fragment的onPause
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -264,6 +271,7 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
         });
 
         mRecyclerView.setAdapter(mAdapter);
+        mHandler.sendEmptyMessage(GET_ORDER_LIST);
     }
 
 

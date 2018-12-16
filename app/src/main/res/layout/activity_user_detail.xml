@@ -118,7 +118,7 @@
         <TextView
             android:layout_width="@dimen/dm_100"
             android:layout_height="wrap_content"
-            android:text="常驻地址："
+            android:text="配送区域："
             android:textColor="@color/black"
             android:textSize="@dimen/t18" />
 
@@ -130,7 +130,6 @@
             android:textSize="@dimen/t18" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>
