@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.jyq.wm.R;
 import com.jyq.wm.activity.MainActivity;
 import com.jyq.wm.activity.ModifyPwdActivity;
+import com.jyq.wm.activity.UserDetailActivity;
 import com.jyq.wm.utils.ConfigManager;
 
 import java.util.ArrayList;
@@ -92,6 +93,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     {
         if (v == rlUser)
         {
+            startActivity(new Intent(getActivity(), UserDetailActivity.class));
 
         }
         else if (v == rlPwd)

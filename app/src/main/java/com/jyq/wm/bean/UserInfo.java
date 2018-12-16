@@ -10,14 +10,21 @@ public class UserInfo
     private String name;
 
     private boolean modifyPwdFlag;
+    private String phone;
+    private String sameTimeSize;
+    private String status;
+    private String address;
 
 
-
-    public  UserInfo(JSONObject obj)
+    public UserInfo(JSONObject obj)
     {
         this.id = obj.optString("id");
         this.name = obj.optString("name");
         this.modifyPwdFlag = obj.optBoolean("modifyPwdFlag");
+        this.phone = obj.optString("phone");
+        this.sameTimeSize = obj.optString("sameTimeSize");
+        this.status = obj.optString("status");
+        this.address = obj.optString("address");
     }
 
 
@@ -49,5 +56,45 @@ public class UserInfo
     public void setModifyPwdFlag(boolean modifyPwdFlag)
     {
         this.modifyPwdFlag = modifyPwdFlag;
+    }
+
+    public String getPhone()
+    {
+        return phone;
+    }
+
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+    }
+
+    public String getSameTimeSize()
+    {
+        return sameTimeSize;
+    }
+
+    public void setSameTimeSize(String sameTimeSize)
+    {
+        this.sameTimeSize = sameTimeSize;
+    }
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+
+    public String getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(String address)
+    {
+        this.address = address;
     }
 }

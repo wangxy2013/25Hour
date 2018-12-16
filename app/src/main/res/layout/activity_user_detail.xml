@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBDAD1"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/layout_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dm_40"
+        android:layout_marginTop="@dimen/dm_40"
+        android:layout_marginRight="@dimen/dm_40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dm_100"
+            android:layout_height="wrap_content"
+            android:text="骑手姓名："
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dm_40"
+        android:layout_marginTop="@dimen/dm_20"
+        android:layout_marginRight="@dimen/dm_40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dm_100"
+            android:layout_height="wrap_content"
+            android:text="骑手电话："
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dm_40"
+        android:layout_marginTop="@dimen/dm_20"
+        android:layout_marginRight="@dimen/dm_40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dm_100"
+            android:layout_height="wrap_content"
+            android:text="可接单数："
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+        <TextView
+            android:id="@+id/tv_sameTimeSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dm_40"
+        android:layout_marginTop="@dimen/dm_20"
+        android:layout_marginRight="@dimen/dm_40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dm_100"
+            android:layout_height="wrap_content"
+            android:text="骑手状态："
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dm_40"
+        android:layout_marginTop="@dimen/dm_20"
+        android:layout_marginRight="@dimen/dm_40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dm_100"
+            android:layout_height="wrap_content"
+            android:text="常驻地址："
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/t18" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
