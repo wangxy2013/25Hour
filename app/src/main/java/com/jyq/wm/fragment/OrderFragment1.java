@@ -2,7 +2,9 @@ package com.jyq.wm.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -95,15 +97,12 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
 
                     if (!newOrderInfoList.isEmpty())
                     {
-                        if (orderInfoList.isEmpty() || newOrderInfoList.get(0).getId().equals(orderInfoList.get(0).getId()))
+                        if (orderInfoList.isEmpty() || !newOrderInfoList.get(0).getId().equals(orderInfoList.get(0).getId()))
                         {
 
-                            if(ConfigManager.instance().getVoiceIsOpend())
+                            if (ConfigManager.instance().getVoiceIsOpend())
                             {
-                                //提示音
-                                Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                                Ringtone rt = RingtoneManager.getRingtone(getActivity(), uri);
-                                rt.play();
+                                playVoice(getActivity());
                             }
                         }
 
@@ -174,15 +173,21 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
     {
         super.onResume();
     }
-    public void setUserVisibleHint(boolean isVisibleToUser) {
+
+    public void setUserVisibleHint(boolean isVisibleToUser)
+    {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
+        if (isVisibleToUser)
+        {
             //相当于Fragment的onResume
             mHandler.sendEmptyMessage(GET_ORDER_LIST);
-        } else {
+        }
+        else
+        {
             //相当于Fragment的onPause
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -369,5 +374,23 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
         loadData();
     }
 
+    private static MediaPlayer mediaPlayer;
+
+    public static void playVoice(Context context)
+    {
+        try
+        {
+            if (null == mediaPlayer)
+            {
+                mediaPlayer = MediaPlayer.create(context, R.raw.order);
+            }
+            mediaPlayer.start();
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 }
