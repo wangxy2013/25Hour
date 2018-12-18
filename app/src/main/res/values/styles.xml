@@ -20,7 +20,7 @@
         <item name="android:alertDialogTheme">@style/alertDialog</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@drawable/pic_welcome_bg</item>
     </style>
     <style name="window_animation">
         <!--打开新的activity 用的动画-->
