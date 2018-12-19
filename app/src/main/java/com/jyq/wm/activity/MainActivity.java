@@ -47,6 +47,7 @@ import com.jyq.wm.utils.LogUtil;
 import com.jyq.wm.utils.StringUtils;
 import com.jyq.wm.utils.ToastUtil;
 import com.jyq.wm.utils.Urls;
+import com.jyq.wm.utils.VersionManager;
 import com.jyq.wm.widget.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class MainActivity extends BaseActivity implements IRequestListener
 
 
     private static final int UPLOAD_LOCATION = 0x01;
+    private static final int INIT_VERSION = 0x03;
     @SuppressLint("HandlerLeak")
     private BaseHandler mHandler = new BaseHandler(MainActivity.this)
     {
@@ -80,6 +82,10 @@ public class MainActivity extends BaseActivity implements IRequestListener
 
                     uploadLocation();
                     mHandler.sendEmptyMessageDelayed(UPLOAD_LOCATION, 60 * 1000);
+                    break;
+
+                case INIT_VERSION:
+                    new VersionManager(MainActivity.this).init();
                     break;
 
 
@@ -202,6 +208,7 @@ public class MainActivity extends BaseActivity implements IRequestListener
                 // Toast.makeText(MainActivity.this, "访问摄像头", Toast.LENGTH_LONG).show();
                 locationService.start();// 定位SDK
                 mHandler.sendEmptyMessageDelayed(UPLOAD_LOCATION, 60 * 1000);
+                mHandler.sendEmptyMessageDelayed(INIT_VERSION, 10 * 1000);
             }
 
             @Override

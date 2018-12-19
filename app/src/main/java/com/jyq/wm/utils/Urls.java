@@ -14,7 +14,7 @@ public class Urls
     //获取版本信息
     public static String getVersionUrl()
     {
-        return ConfigManager.instance().getDomainName() + "/index/config";
+        return HTTP_IP + "/app/appInfo/obtain";
     }
 
 
