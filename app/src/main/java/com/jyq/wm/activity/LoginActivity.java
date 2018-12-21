@@ -97,6 +97,7 @@ public class LoginActivity extends BaseActivity implements IRequestListener
     protected void initViewData()
     {
         etPhone.setText(ConfigManager.instance().getUserName());
+        etPwd.setText(ConfigManager.instance().getUserPwd());
     }
 
 
