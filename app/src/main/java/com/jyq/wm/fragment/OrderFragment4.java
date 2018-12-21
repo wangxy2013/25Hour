@@ -25,6 +25,7 @@ import com.jyq.wm.json.ResultHandler;
 import com.jyq.wm.listener.MyItemClickListener;
 import com.jyq.wm.utils.ConfigManager;
 import com.jyq.wm.utils.ConstantUtil;
+import com.jyq.wm.utils.NetWorkUtil;
 import com.jyq.wm.utils.ToastUtil;
 import com.jyq.wm.utils.Urls;
 import com.jyq.wm.widget.list.refresh.PullToRefreshBase;
@@ -194,6 +195,7 @@ public class OrderFragment4 extends BaseFragment  implements IRequestListener, P
             @Override
             public void onClick(View v)
             {
+                showProgressDialog(getActivity());
                 pn = 1;
                 mRefreshStatus = 0;
                 loadData();
@@ -249,6 +251,21 @@ public class OrderFragment4 extends BaseFragment  implements IRequestListener, P
 
     private void loadData()
     {
+        if (!NetWorkUtil.isConn(getActivity()))
+        {
+            hideProgressDialog(getActivity());
+            if (mRefreshStatus == 1)
+            {
+                mPullToRefreshRecyclerView.onPullUpRefreshComplete();
+            }
+            else
+            {
+                mPullToRefreshRecyclerView.onPullDownRefreshComplete();
+            }
+
+            NetWorkUtil.showNoNetWorkDlg(getActivity());
+            return;
+        }
         Map<String, Object> valuePairs = new HashMap<>();
         valuePairs.put("pageNum", pn);
         valuePairs.put("pageSize", 15);
@@ -264,6 +281,11 @@ public class OrderFragment4 extends BaseFragment  implements IRequestListener, P
 
     private void pikupOrder(String orderId)
     {
+        if (!NetWorkUtil.isConn(getActivity()))
+        {
+            NetWorkUtil.showNoNetWorkDlg(getActivity());
+            return;
+        }
         showProgressDialog(getActivity());
         Map<String, String> valuePairs = new HashMap<>();
         valuePairs.put("deliverUserId", ConfigManager.instance().getUserID());

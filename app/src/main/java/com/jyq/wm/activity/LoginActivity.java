@@ -18,6 +18,7 @@ import com.jyq.wm.json.LoginHandler;
 import com.jyq.wm.json.UserInfoHandler;
 import com.jyq.wm.utils.ConfigManager;
 import com.jyq.wm.utils.ConstantUtil;
+import com.jyq.wm.utils.NetWorkUtil;
 import com.jyq.wm.utils.ToastUtil;
 import com.jyq.wm.utils.Urls;
 import com.jyq.wm.widget.statusbar.StatusBarUtil;
@@ -125,7 +126,11 @@ public class LoginActivity extends BaseActivity implements IRequestListener
                 ToastUtil.show(LoginActivity.this, "密码不能为空");
                 return;
             }
-
+            if (!NetWorkUtil.isConn(this))
+            {
+                NetWorkUtil.showNoNetWorkDlg(this);
+                return;
+            }
             showProgressDialog();
             Map<String, String> valuePairs = new HashMap<>();
             valuePairs.put("password", pwd);

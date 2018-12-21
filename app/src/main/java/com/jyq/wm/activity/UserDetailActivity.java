@@ -14,6 +14,7 @@ import com.jyq.wm.http.HttpRequest;
 import com.jyq.wm.http.IRequestListener;
 import com.jyq.wm.json.UserInfoHandler;
 import com.jyq.wm.utils.ConstantUtil;
+import com.jyq.wm.utils.NetWorkUtil;
 import com.jyq.wm.utils.StringUtils;
 import com.jyq.wm.utils.ToastUtil;
 import com.jyq.wm.utils.Urls;
@@ -103,10 +104,22 @@ public class UserDetailActivity extends BaseActivity implements IRequestListener
     protected void initViewData()
     {
         tvTitle.setText("个人信息");
+
+
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        if (!NetWorkUtil.isConn(this))
+        {
+            NetWorkUtil.showNoNetWorkDlg(this);
+            return;
+        }
         showProgressDialog();
         Map<String, String> postMap = new HashMap<>();
         DataRequest.instance().request(UserDetailActivity.this, Urls.getUserInfoUrl(), this, HttpRequest.GET, GET_USER_INFO, postMap, new UserInfoHandler());
-
     }
 
     @Override
