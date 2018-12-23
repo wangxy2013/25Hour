@@ -23,22 +23,24 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_qs_app" />
 
+
     <RelativeLayout
         android:id="@+id/ll_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_qs_app"
         android:layout_marginTop="@dimen/dm_30"
-        android:layout_marginLeft="@dimen/dm_30"
-        android:layout_marginRight="@dimen/dm_30"
+        android:layout_marginLeft="@dimen/dm_15"
+        android:layout_marginRight="@dimen/dm_15"
         android:padding="@dimen/dm_30">
 
         <TextView
             android:id="@+id/tv_account"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dm_100"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="名称："
+            android:text="手机号码："
+            android:gravity="right"
             android:textColor="@color/white"
             android:textSize="@dimen/t18" />
 
@@ -65,15 +67,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_account"
-        android:layout_marginLeft="@dimen/dm_60"
-        android:layout_marginRight="@dimen/dm_60">
+        android:layout_marginLeft="@dimen/dm_45"
+        android:layout_marginRight="@dimen/dm_45">
 
         <TextView
             android:id="@+id/tv_pwd"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dm_100"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="密码："
+            android:text="登录密码："
+            android:gravity="right"
             android:textColor="@color/white"
             android:textSize="@dimen/t18" />
 

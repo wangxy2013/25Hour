@@ -1,6 +1,10 @@
 package com.jyq.wm.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +12,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
+import com.google.gson.Gson;
 import com.jyq.wm.R;
+import com.jyq.wm.bean.ResponseHeaderInfo;
+import com.jyq.wm.bean.StatisticsInfo;
+import com.jyq.wm.http.DataRequest;
+import com.jyq.wm.http.HttpRequest;
 import com.jyq.wm.http.IRequestListener;
+import com.jyq.wm.json.ResultHandler;
+import com.jyq.wm.json.StatisticsHandler;
+import com.jyq.wm.utils.ConfigManager;
+import com.jyq.wm.utils.ConstantUtil;
 import com.jyq.wm.utils.LogUtil;
 import com.jyq.wm.utils.StringUtils;
 import com.jyq.wm.utils.ToastUtil;
+import com.jyq.wm.utils.Urls;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +75,55 @@ public class StatisticsFragment extends BaseFragment implements IRequestListener
     private Unbinder unbinder;
     private String mStartTime;
     private String mEndTime;
+    private static final String QUERY_ORDER = "query_order";
+    private static final int REQUEST_SUCCESS = 0x01;
+    private static final int REQUEST_FAIL = 0x02;
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            super.handleMessage(msg);
+            switch (msg.what)
+            {
+
+                case REQUEST_SUCCESS:
+                    StatisticsHandler mStatisticsHandler = (StatisticsHandler) msg.obj;
+
+                    ResponseHeaderInfo responseHeaderInfo = mStatisticsHandler.getResponseHeaderInfo();
+                    StatisticsInfo statisticsInfo = mStatisticsHandler.getStatisticsInfo();
+
+
+                    if (null != responseHeaderInfo)
+                    {
+                        if ("0000".equals(responseHeaderInfo.getRetCode()))
+                        {
+                            if (null != statisticsInfo)
+                            {
+                                tvOrderCount.setText(statisticsInfo.getDataCount());
+                                tvDelivery.setText(statisticsInfo.getDistributorCommissionAmount());
+                                tvTotal.setText(statisticsInfo.getAmount());
+                                tvWxTotal.setText(statisticsInfo.getPayOnlineAmount());
+                            }
+                        }
+                        else
+                        {
+                            ToastUtil.show(getActivity(), responseHeaderInfo.getRetMsg());
+                        }
+                    }
+
+
+                    break;
+
+                case REQUEST_FAIL:
+
+                    break;
+
+
+            }
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -125,11 +191,6 @@ public class StatisticsFragment extends BaseFragment implements IRequestListener
 
     }
 
-    @Override
-    public void notify(String action, String resultCode, String resultMsg, Object obj)
-    {
-
-    }
 
     @Override
     public void onClick(View v)
@@ -221,9 +282,45 @@ public class StatisticsFragment extends BaseFragment implements IRequestListener
                 ToastUtil.show(getActivity(), "请选择正确的查询周期");
                 return;
             }
+            showProgressDialog(getActivity());
+            Map<String, String> requestHeaderPairs = new HashMap<>();
+            requestHeaderPairs.put("requestId", UUID.randomUUID().toString());
+            requestHeaderPairs.put("appId", "com.jyq.qs");
 
+
+            Map<String, String> conditionsPairs = new HashMap<>();
+            conditionsPairs.put("distributorId", ConfigManager.instance().getUserID());
+            conditionsPairs.put("startDate", mStartTime);
+            conditionsPairs.put("endDate", mEndTime);
+
+            Map<String, Object> valuePairs = new HashMap<>();
+            valuePairs.put("requestHeader", requestHeaderPairs);
+            valuePairs.put("conditions", conditionsPairs);
+            Gson gson = new Gson();
+            Map<String, String> postMap = new HashMap<>();
+            postMap.put("json", gson.toJson(valuePairs));
+            DataRequest.instance().request(getActivity(), Urls.getQuerySellerUrl(), this, HttpRequest.POST, QUERY_ORDER, postMap, new
+                    StatisticsHandler());
         }
 
 
     }
+
+    @Override
+    public void notify(String action, String resultCode, String resultMsg, Object obj)
+    {
+        hideProgressDialog(getActivity());
+        if (QUERY_ORDER.equals(action))
+        {
+            if (ConstantUtil.RESULT_SUCCESS.equals(resultCode))
+            {
+                mHandler.sendMessage(mHandler.obtainMessage(REQUEST_SUCCESS, obj));
+            }
+            else
+            {
+                mHandler.sendMessage(mHandler.obtainMessage(REQUEST_FAIL, resultMsg));
+            }
+        }
+    }
+
 }
