@@ -119,12 +119,16 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
                             newOrderIdList.add(newOrderInfoList.get(i).getId());
                         }
 
-                        List<String> diffList = StringUtils.getDiffrent(oldOrderIdList, newOrderIdList);
-                        if (null != diffList && !diffList.isEmpty())
-                        {
-                            playVoice(getActivity());
-                        }
 
+                        for (int j = 0; j < newOrderIdList.size(); j++)
+                        {
+                            if (!oldOrderIdList.contains(newOrderIdList.get(j)))
+                            {
+                                playVoice(getActivity());
+                                break;
+                            }
+
+                        }
 
                     }
 
