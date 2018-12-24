@@ -8,10 +8,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
@@ -904,4 +906,18 @@ public class StringUtils
         return days;
     }
 
+
+    public static List<String> getDiffrent(List<String> list1, List<String> list2) {
+        long st = System.nanoTime();
+        List<String> diff = new ArrayList<String>();
+        for(String str:list1)
+        {
+            if(!list2.contains(str))
+            {
+                diff.add(str);
+            }
+        }
+        System.out.println("getDiffrent total times "+(System.nanoTime()-st));
+        return diff;
+    }
 }
