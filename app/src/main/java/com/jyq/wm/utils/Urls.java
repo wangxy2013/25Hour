@@ -8,7 +8,7 @@ package com.jyq.wm.utils;
  */
 public class Urls
 {
-    public static final String HTTP_IP = "http://47.100.20.214:8081";
+    public static final String HTTP_IP = "http://www.ershiwu.cn:8082";
 
 
     //获取版本信息
@@ -90,7 +90,7 @@ public class Urls
     //店铺界面查询
     public static String getQuerySellerUrl()
     {
-        return "http://47.100.107.253:8080/settlementser/distributorSettlement/summary";
+        return "http://47.110.229.196:8080/settlementser/distributorSettlement/summary";
     }
 }
 
