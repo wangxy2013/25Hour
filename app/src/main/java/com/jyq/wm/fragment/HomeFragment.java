@@ -74,6 +74,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 case ONLINE_SUCCESS:
                     isOnline = true;
                     MyApplication.getInstance().setOnline(isOnline);
+                    ToastUtil.show(getActivity(),"骑手上线操作成功");
                     mReceiptTv.setText("骑手下线");
                     break;
 
@@ -85,6 +86,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                     isOnline = false;
                     MyApplication.getInstance().setOnline(isOnline);
                     mReceiptTv.setText("骑手上线");
+                    ToastUtil.show(getActivity(),"骑手下线操作成功");
                     break;
 
             }

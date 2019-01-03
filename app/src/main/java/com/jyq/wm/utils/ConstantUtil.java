@@ -22,7 +22,7 @@ public class ConstantUtil
 
 
 
-    public static final  String UMENG_CODE = "5b456506f43e4816810001e9";
+    public static final  String DEFAULT_PWD = "123456";
 
 
 

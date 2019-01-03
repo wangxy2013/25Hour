@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jyq.wm.R;
 import com.jyq.wm.activity.BNaviMainActivity;
+import com.jyq.wm.activity.OrderDetailActivity;
 import com.jyq.wm.bean.OrderInfo;
 import com.jyq.wm.listener.MyItemClickListener;
 import com.jyq.wm.utils.DialogUtils;
@@ -29,7 +31,7 @@ public class OrderHolder2 extends RecyclerView.ViewHolder
     private TextView mPayStyleTv;
     private MyItemClickListener listener;
     private Context context;
-
+    private LinearLayout mItemLayout;
 
     public OrderHolder2(View rootView, Context context, MyItemClickListener listener)
     {
@@ -45,6 +47,7 @@ public class OrderHolder2 extends RecyclerView.ViewHolder
         mPikupTv = (TextView) rootView.findViewById(R.id.tv_pickup);
         mPayStyleTv = (TextView) rootView.findViewById(R.id.tv_pay_style);
         mNavigationTv = (TextView) rootView.findViewById(R.id.tv_navigation);
+        mItemLayout = (LinearLayout)rootView.findViewById(R.id.ll_item);
     }
 
 
@@ -84,6 +87,16 @@ public class OrderHolder2 extends RecyclerView.ViewHolder
                     context.startActivity(mItent);
                 }
 
+            }
+        });
+
+        mItemLayout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra
+                        ("ORDER_ID", mOrderInfo.getOrderId()));
             }
         });
     }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -143,7 +144,11 @@ public class ModifyPwdActivity extends BaseActivity implements IRequestListener
                 ToastUtil.show(this, "请输入新密码");
                 return;
             }
-
+            if (oldPwd.equals(newPwd))
+            {
+                ToastUtil.show(this, "新密码与旧密码不能相同");
+                return;
+            }
 
             if (newPwd.length() < 6)
             {
@@ -173,7 +178,14 @@ public class ModifyPwdActivity extends BaseActivity implements IRequestListener
         }
         else if (v == ivBack)
         {
-            finish();
+            if(ConstantUtil.DEFAULT_PWD.equals(ConfigManager.instance().getUserPwd()))
+            {
+                ToastUtil.show(ModifyPwdActivity.this,"请修改密码");
+            }
+            else
+            {
+                finish();
+            }
         }
 
     }
@@ -194,5 +206,27 @@ public class ModifyPwdActivity extends BaseActivity implements IRequestListener
                 mHandler.sendMessage(mHandler.obtainMessage(REQUEST_FAIL, resultMsg));
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            if(ConstantUtil.DEFAULT_PWD.equals(ConfigManager.instance().getUserPwd()))
+            {
+                ToastUtil.show(ModifyPwdActivity.this,"请修改密码");
+                return false;
+            }
+            else
+            {
+                return super.onKeyDown(keyCode, event);
+            }
+        }
+        else
+        {
+            return super.onKeyDown(keyCode, event);
+        }
+
     }
 }

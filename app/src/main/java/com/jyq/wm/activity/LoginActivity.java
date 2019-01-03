@@ -64,9 +64,17 @@ public class LoginActivity extends BaseActivity implements IRequestListener
                     break;
 
                 case GET_USER_INFO_SUCCESS:
-                    ToastUtil.show(LoginActivity.this, "登录成功");
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+
+                    if(ConstantUtil.DEFAULT_PWD.equals(ConfigManager.instance().getUserPwd()))
+                    {
+                        startActivity(new Intent(LoginActivity.this, ModifyPwdActivity.class));
+                        finish();
+                    }
+                    else
+                    {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    }
                     break;
 
             }

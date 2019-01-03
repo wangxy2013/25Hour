@@ -38,8 +38,7 @@
             android:layout_toRightOf="@+id/tv_account"
             android:background="@drawable/gray_frame_5dp"
             android:hint="请输入原密码"
-            android:inputType="phone"
-            android:maxLength="11"
+            android:inputType="numberPassword"
             android:padding="@dimen/dm_5"
             android:textColor="@color/black"
             android:textSize="@dimen/t16" />
@@ -107,7 +106,7 @@
             android:layout_marginLeft="@dimen/dm_5"
             android:layout_toRightOf="@+id/tv_pwd1"
             android:background="@drawable/gray_frame_5dp"
-            android:hint="请再一次输入面膜"
+            android:hint="请再一次输入密码"
             android:inputType="textPassword"
             android:maxLength="18"
             android:padding="@dimen/dm_5"

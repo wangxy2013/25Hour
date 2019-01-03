@@ -74,8 +74,8 @@ public class BNaviMainActivity extends Activity
         mBDLocation = new BDLocation();
         if (null != mBDLocation)
         {
-            mBDLocation.setLatitude(32.121021);
-            mBDLocation.setLongitude(118.896602);
+//            mBDLocation.setLatitude(32.121021);
+//            mBDLocation.setLongitude(118.896602);
             startPt = new LatLng(mBDLocation.getLatitude(), mBDLocation.getLongitude());
         }
         else

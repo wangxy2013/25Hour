@@ -99,7 +99,8 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
 
                     if (!newOrderInfoList.isEmpty() && !orderInfoList.isEmpty())
                     {
-                        //                        if (orderInfoList.isEmpty() || !newOrderInfoList.get(0).getId().equals(orderInfoList.get(0).getId
+                        //                        if (orderInfoList.isEmpty() ||
+                        // !newOrderInfoList.get(0).getId().equals(orderInfoList.get(0).getId
                         // ()))
                         //                    {
                         //                        //提示音
@@ -130,6 +131,10 @@ public class OrderFragment1 extends BaseFragment implements PullToRefreshBase.On
 
                         }
 
+                    }
+                    else if (newOrderInfoList.size() > oldOrderIdList.size())
+                    {
+                        playVoice(getActivity());
                     }
 
                     if (pn == 1)

@@ -1,12 +1,15 @@
 package com.jyq.wm.holder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jyq.wm.R;
+import com.jyq.wm.activity.OrderDetailActivity;
 import com.jyq.wm.bean.OrderInfo;
 import com.jyq.wm.listener.MyItemClickListener;
 
@@ -25,6 +28,7 @@ public class OrderHolder1 extends RecyclerView.ViewHolder
     private TextView mPayStyleTv;
     private MyItemClickListener listener;
     private Context context;
+    private LinearLayout mItemLayout;
 
 
     public OrderHolder1(View rootView, Context context, MyItemClickListener listener)
@@ -40,10 +44,11 @@ public class OrderHolder1 extends RecyclerView.ViewHolder
         mAddressTv = (TextView) rootView.findViewById(R.id.tv_customer_address);
         mGetTv = (TextView) rootView.findViewById(R.id.tv_get);
         mPayStyleTv = (TextView) rootView.findViewById(R.id.tv_pay_style);
+        mItemLayout = (LinearLayout)rootView.findViewById(R.id.ll_item);
     }
 
 
-    public void setOrderInfo(OrderInfo mOrderInfo, final int p)
+    public void setOrderInfo(final  OrderInfo mOrderInfo, final int p)
     {
 
         mNumberTv.setText(mOrderInfo.getId());
@@ -62,6 +67,17 @@ public class OrderHolder1 extends RecyclerView.ViewHolder
                 listener.onItemClick(v, p);
             }
         });
+
+        mItemLayout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra
+                        ("ORDER_ID", mOrderInfo.getId()));
+            }
+        });
+
     }
 
 
