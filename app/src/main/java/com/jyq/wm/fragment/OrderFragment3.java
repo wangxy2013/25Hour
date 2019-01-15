@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.baidu.location.BDLocation;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.Gson;
 import com.jyq.wm.MyApplication;
 import com.jyq.wm.R;
@@ -25,6 +28,7 @@ import com.jyq.wm.json.ResultHandler;
 import com.jyq.wm.listener.MyItemClickListener;
 import com.jyq.wm.utils.ConfigManager;
 import com.jyq.wm.utils.ConstantUtil;
+import com.jyq.wm.utils.LogUtil;
 import com.jyq.wm.utils.NetWorkUtil;
 import com.jyq.wm.utils.ToastUtil;
 import com.jyq.wm.utils.Urls;
@@ -218,8 +222,31 @@ public class OrderFragment3 extends BaseFragment  implements IRequestListener, P
             {
                 if (MyApplication.getInstance().isOnline())
                 {
+                    OrderInfo mOrderInfo = orderInfoList.get(position);
+                    BDLocation mBDLocation1= MyApplication.getInstance().getLocation();
 
-                    pikupOrder(orderInfoList.get(position).getId());
+                    if(null !=mBDLocation1)
+                    {
+                        LatLng mLatLng1 = new LatLng(mBDLocation1.getLatitude(), mBDLocation1.getLongitude());
+                        LatLng mLatLng2 = new LatLng(mOrderInfo.getUserLat(), mOrderInfo.getUserLnt());
+                        Double distance = DistanceUtil.getDistance(mLatLng1, mLatLng2);
+
+                        LogUtil.e("TAG", "距离：" + distance);
+                        if (distance > 300)
+                        {
+                            ToastUtil.show(getActivity(), "请到商家才可确认取货");
+                        }
+                        else
+                        {
+                            pikupOrder(mOrderInfo.getId());
+                        }
+                    }
+                    else
+                    {
+                        ToastUtil.show(getActivity(), "请确认是否开启定位功能");
+                    }
+
+
                 }
                 else
                 {
@@ -247,7 +274,8 @@ public class OrderFragment3 extends BaseFragment  implements IRequestListener, P
                 mPullToRefreshRecyclerView.onPullDownRefreshComplete();
             }
 
-            NetWorkUtil.showNoNetWorkDlg(getActivity());
+//            NetWorkUtil.showNoNetWorkDlg(getActivity());
+            ToastUtil.show(getActivity(),"请检查网络是否可用");
             return;
         }
         Map<String, Object> valuePairs = new HashMap<>();

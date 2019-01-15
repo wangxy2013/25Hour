@@ -19,6 +19,7 @@ import com.jyq.wm.http.IRequestListener;
 import com.jyq.wm.json.OrderDetailHandler;
 import com.jyq.wm.utils.ConstantUtil;
 import com.jyq.wm.utils.NetWorkUtil;
+import com.jyq.wm.utils.StringUtils;
 import com.jyq.wm.utils.ToastUtil;
 import com.jyq.wm.utils.Urls;
 import com.jyq.wm.widget.FullyLinearLayoutManager;
@@ -95,8 +96,8 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
 
                         if (!TextUtils.isEmpty(phone) && phone.length() > 6)
                         {
-//                            String phoneNumber = phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
-//                            tvPhone.setText(phoneNumber);
+                            //                            String phoneNumber = phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+                            //                            tvPhone.setText(phoneNumber);
                             tvPhone.setText(phone);
                         }
                         else
@@ -109,8 +110,18 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
                         tvDeposit.setText(mOrderDetailInfo.getDeposit());
                         tvDeliveryFee.setText(mOrderDetailInfo.getDeliveryFee());
                         tvMinusPrice.setText(mOrderDetailInfo.getMinusPrice());
-                        tvTotalPrice.setText(mOrderDetailInfo.getTotalPrice());
-                        tvPrice.setText(mOrderDetailInfo.getPrice());
+                        tvTotalPrice.setText("¥:" + mOrderDetailInfo.getTotalPrice());
+
+                        String price = mOrderDetailInfo.getPrice();
+
+                        if (StringUtils.stringIsEmpty(price))
+                        {
+                            tvPrice.setText("¥:0");
+                        }
+                        else
+                        {
+                            tvPrice.setText("¥:" + price);
+                        }
                         tvPayType.setText(("online".equals(mOrderDetailInfo.getPayType())) ? "微信支付" : "货到付款");
                         tvPayStatus.setText(("1".equals(mOrderDetailInfo.getPayStatue())) ? "已支付" : "未支付");
                         tvNote.setText(mOrderDetailInfo.getNote());

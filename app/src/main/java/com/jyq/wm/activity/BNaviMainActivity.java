@@ -71,7 +71,6 @@ public class BNaviMainActivity extends Activity
         endLnt = getIntent().getDoubleExtra("endLnt", 0);
         endLat = getIntent().getDoubleExtra("endLat", 0);
         BDLocation mBDLocation = MyApplication.getInstance().getLocation();
-        mBDLocation = new BDLocation();
         if (null != mBDLocation)
         {
 //            mBDLocation.setLatitude(32.121021);
@@ -152,7 +151,7 @@ public class BNaviMainActivity extends Activity
     public void initOverlay()
     {
         // add marker overlay
-        LatLng llA = new LatLng(32.121021, 118.896602);
+        LatLng llA = new LatLng(startPt.latitude, startPt.longitude);
         LatLng llB = new LatLng(endLat, endLnt);
 
         MarkerOptions ooA = new MarkerOptions().position(llA).icon(bdStart).zIndex(9).draggable

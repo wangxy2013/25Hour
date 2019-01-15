@@ -263,7 +263,8 @@ public class OrderFragment4 extends BaseFragment  implements IRequestListener, P
                 mPullToRefreshRecyclerView.onPullDownRefreshComplete();
             }
 
-            NetWorkUtil.showNoNetWorkDlg(getActivity());
+            //NetWorkUtil.showNoNetWorkDlg(getActivity());
+            ToastUtil.show(getActivity(),"请检查网络是否可用");
             return;
         }
         Map<String, Object> valuePairs = new HashMap<>();
