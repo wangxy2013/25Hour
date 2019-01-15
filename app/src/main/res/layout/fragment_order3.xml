@@ -5,31 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jyq.wm.widget.list.refresh.PullToRefreshRecyclerView
-        android:id="@+id/refreshRecyclerView"
+    <com.jyq.wm.widget.VerticalSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/ll_no_order"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_no_order" />
+            <com.jyq.wm.widget.list.refresh.PullToRefreshRecyclerView
+                android:id="@+id/refreshRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dm_10"
-            android:text="暂无订单点击刷新"
-            android:textColor="@color/redA"
-            android:textSize="@dimen/t16" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_no_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_no_order" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dm_10"
+                    android:text="暂无订单点击刷新"
+                    android:textColor="@color/redA"
+                    android:textSize="@dimen/t16" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.jyq.wm.widget.VerticalSwipeRefreshLayout>
 </RelativeLayout>

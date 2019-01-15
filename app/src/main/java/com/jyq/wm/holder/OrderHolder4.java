@@ -59,7 +59,7 @@ public class OrderHolder4 extends RecyclerView.ViewHolder
         mPhoneTv.setText("客户电话:" + mOrderInfo.getPhone());
         mNameTv.setText("客户姓名:" + mOrderInfo.getName());
         mAddressTv.setText("客户地址:" + mOrderInfo.getAddress());
-        mPayStyleTv.setText("offline".endsWith(mOrderInfo.getPayType()) ? "货到付款" : "微信支付");
+        mPayStyleTv.setText("offline".equals(mOrderInfo.getPayType()) ? "货到付款" : "微信支付");
 
         mItemLayout.setOnClickListener(new View.OnClickListener()
         {

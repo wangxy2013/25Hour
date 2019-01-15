@@ -1,5 +1,7 @@
 package com.jyq.wm.bean;
 
+import com.jyq.wm.utils.StringUtils;
+
 import org.json.JSONObject;
 
 import java.util.List;
@@ -30,6 +32,9 @@ public class OrderDetailInfo
     private String address;
     private String submitOrderTime;
 
+    private String storeAddress;//": "北新泾",
+
+
     private List<GoodsInfo> goodsInfoList;
 
 
@@ -57,6 +62,17 @@ public class OrderDetailInfo
         this.storeName = obj.optString("storeName");
         this.totalPrice = obj.optString("totalPrice");
         this.submitOrderTime = obj.optString("submitOrderTime");
+        this.storeAddress = obj.optString("storeAddress");
+        if (StringUtils.stringIsEmpty(price))
+        {
+            this.price = "0.0";
+        }
+
+
+        if (StringUtils.stringIsEmpty(deposit))
+        {
+            this.deposit = "0.0";
+        }
 
     }
 
@@ -298,5 +314,16 @@ public class OrderDetailInfo
     public void setSubmitOrderTime(String submitOrderTime)
     {
         this.submitOrderTime = submitOrderTime;
+    }
+
+
+    public String getStoreAddress()
+    {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress)
+    {
+        this.storeAddress = storeAddress;
     }
 }

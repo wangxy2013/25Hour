@@ -68,7 +68,10 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
     @BindView(R.id.tv_note)
     TextView tvNote;
     private String orderId;
-
+    @BindView(R.id.tv_store_name)
+    TextView tvStoreName;
+    @BindView(R.id.tv_store_address)
+    TextView tvStoreAddress;
     private GoodsAdapter mGoodsAdapter;
     private List<GoodsInfo> goodsInfoList = new ArrayList<>();
     private static final String GET_ORDER_DETAIL = "get_order_detail";
@@ -104,12 +107,13 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
                         {
                             tvPhone.setText(phone);
                         }
-
+                        tvStoreName.setText(mOrderDetailInfo.getStoreName());
+                        tvStoreAddress.setText(mOrderDetailInfo.getStoreAddress());
                         tvDateline.setText(mOrderDetailInfo.getSubmitOrderTime());
                         tvAddress.setText(mOrderDetailInfo.getAddress());
-                        tvDeposit.setText(mOrderDetailInfo.getDeposit());
-                        tvDeliveryFee.setText(mOrderDetailInfo.getDeliveryFee());
-                        tvMinusPrice.setText(mOrderDetailInfo.getMinusPrice());
+                        tvDeposit.setText("¥:" + mOrderDetailInfo.getDeposit());
+                        tvDeliveryFee.setText("¥:" + mOrderDetailInfo.getDeliveryFee());
+                        tvMinusPrice.setText("¥:" + mOrderDetailInfo.getMinusPrice());
                         tvTotalPrice.setText("¥:" + mOrderDetailInfo.getTotalPrice());
 
                         String price = mOrderDetailInfo.getPrice();
