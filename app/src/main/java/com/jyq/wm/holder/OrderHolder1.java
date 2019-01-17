@@ -2,7 +2,10 @@ package com.jyq.wm.holder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,11 +47,11 @@ public class OrderHolder1 extends RecyclerView.ViewHolder
         mAddressTv = (TextView) rootView.findViewById(R.id.tv_customer_address);
         mGetTv = (TextView) rootView.findViewById(R.id.tv_get);
         mPayStyleTv = (TextView) rootView.findViewById(R.id.tv_pay_style);
-        mItemLayout = (LinearLayout)rootView.findViewById(R.id.ll_item);
+        mItemLayout = (LinearLayout) rootView.findViewById(R.id.ll_item);
     }
 
 
-    public void setOrderInfo(final  OrderInfo mOrderInfo, final int p)
+    public void setOrderInfo(final OrderInfo mOrderInfo, final int p)
     {
 
         mNumberTv.setText(mOrderInfo.getId());
@@ -56,7 +59,17 @@ public class OrderHolder1 extends RecyclerView.ViewHolder
         mTimeTv.setText(mOrderInfo.getAddTime());
         mPhoneTv.setText("客户电话:" + mOrderInfo.getPhone());
         mNameTv.setText("客户姓名:" + mOrderInfo.getName());
-        mAddressTv.setText("客户地址:"+mOrderInfo.getAddress());
+        mAddressTv.setText("客户地址:" + mOrderInfo.getAddress());
+
+        if ("offline".equals(mOrderInfo.getPayType()))
+        {
+            mPayStyleTv.setTextColor(ContextCompat.getColor(context,R.color.redA));
+        }
+        else
+        {
+            mPayStyleTv.setTextColor(ContextCompat.getColor(context,R.color.green));
+        }
+
         mPayStyleTv.setText("offline".equals(mOrderInfo.getPayType()) ? "货到付款" : "微信支付");
 
         mGetTv.setOnClickListener(new View.OnClickListener()
@@ -73,11 +86,26 @@ public class OrderHolder1 extends RecyclerView.ViewHolder
             @Override
             public void onClick(View v)
             {
-                context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra
-                        ("ORDER_ID", mOrderInfo.getId()));
+                context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra("ORDER_ID", mOrderInfo.getId()));
             }
         });
 
+
+        mPhoneTv.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if (!TextUtils.isEmpty(mOrderInfo.getPhone()))
+                {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    Uri data = Uri.parse("tel:" + mOrderInfo.getPhone());
+                    intent.setData(data);
+                    context.startActivity(intent);
+
+                }
+            }
+        });
     }
 
 

@@ -28,6 +28,7 @@ import com.jyq.wm.json.ResultHandler;
 import com.jyq.wm.listener.MyItemClickListener;
 import com.jyq.wm.utils.ConfigManager;
 import com.jyq.wm.utils.ConstantUtil;
+import com.jyq.wm.utils.DialogUtils;
 import com.jyq.wm.utils.LogUtil;
 import com.jyq.wm.utils.NetWorkUtil;
 import com.jyq.wm.utils.ToastUtil;
@@ -225,7 +226,7 @@ public class OrderFragment3 extends BaseFragment  implements IRequestListener, P
             {
                 if (MyApplication.getInstance().isOnline())
                 {
-                    OrderInfo mOrderInfo = orderInfoList.get(position);
+                    final OrderInfo mOrderInfo = orderInfoList.get(position);
                     BDLocation mBDLocation1= MyApplication.getInstance().getLocation();
 
                     if(null !=mBDLocation1)
@@ -241,7 +242,22 @@ public class OrderFragment3 extends BaseFragment  implements IRequestListener, P
                         }
                         else
                         {
-                            pikupOrder(mOrderInfo.getId());
+                            if("offline".equals(mOrderInfo.getPayType()))
+                            {
+                                DialogUtils.showPromptDialog(getActivity(), "请确认货到付款,费用已收", new MyItemClickListener()
+                                {
+                                    @Override
+                                    public void onItemClick(View view, int position)
+                                    {
+                                        pikupOrder(mOrderInfo.getId());
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                pikupOrder(mOrderInfo.getId());
+                            }
+
                         }
                     }
                     else
