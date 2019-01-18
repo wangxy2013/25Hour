@@ -18,6 +18,7 @@ public class OrderInfo
     private double userLnt;// 118.432,
     private double userLat;// 24.62567,
 
+    private String urgeFlag;
     public OrderInfo(JSONObject obj)
     {
         this.id = obj.optString("id");
@@ -33,10 +34,20 @@ public class OrderInfo
         this.userLnt = obj.optDouble("userLnt",0);
         this.userLat = obj.optDouble("userLat",0);
         this.orderId = obj.optString("orderId");
+        this.urgeFlag=obj.optString("urgeFlag");
 
 
     }
 
+    public String getUrgeFlag()
+    {
+        return urgeFlag;
+    }
+
+    public void setUrgeFlag(String urgeFlag)
+    {
+        this.urgeFlag = urgeFlag;
+    }
 
     public String getId()
     {

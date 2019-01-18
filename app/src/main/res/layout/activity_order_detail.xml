@@ -173,7 +173,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dm_10">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -191,7 +191,26 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dm_10">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="店铺电话"
+                        android:textColor="@color/blackC"
+                        android:textSize="@dimen/t14" />
+
+                    <TextView
+                        android:id="@+id/tv_store_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/t14" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

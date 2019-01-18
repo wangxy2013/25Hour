@@ -23,6 +23,8 @@ import com.jyq.wm.utils.ToastUtil;
  */
 public class OrderHolder2 extends RecyclerView.ViewHolder
 {
+    private TextView mUrgeFlagTv;
+    private LinearLayout mOrderLayout;
     private TextView mShopNameTv;
     private TextView mTimeTv;
     private TextView mNumberTv;
@@ -51,12 +53,25 @@ public class OrderHolder2 extends RecyclerView.ViewHolder
         mPayStyleTv = (TextView) rootView.findViewById(R.id.tv_pay_style);
         mNavigationTv = (TextView) rootView.findViewById(R.id.tv_navigation);
         mItemLayout = (LinearLayout)rootView.findViewById(R.id.ll_item);
+        mOrderLayout =  (LinearLayout)rootView.findViewById(R.id.ll_order);
+        mUrgeFlagTv = (TextView) rootView.findViewById(R.id.tv_urgeFlag);
     }
 
 
     public void setOrderInfo(final OrderInfo mOrderInfo, final int p)
     {
 
+
+        if("1".equals(mOrderInfo.getUrgeFlag()))
+        {
+            mOrderLayout.setBackgroundResource(R.drawable.blue_frame_5dp);
+            mUrgeFlagTv.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            mOrderLayout.setBackgroundResource(R.drawable.gray_frame_5dp);
+            mUrgeFlagTv.setVisibility(View.GONE);
+        }
         mNumberTv.setText(mOrderInfo.getOrderId());
         mShopNameTv.setText(mOrderInfo.getStoreName());
         mTimeTv.setText(mOrderInfo.getAddTime());

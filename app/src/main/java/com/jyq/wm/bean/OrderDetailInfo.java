@@ -33,7 +33,7 @@ public class OrderDetailInfo
     private String submitOrderTime;
 
     private String storeAddress;//": "北新泾",
-
+    private String storePhone;//
 
     private List<GoodsInfo> goodsInfoList;
 
@@ -63,6 +63,7 @@ public class OrderDetailInfo
         this.totalPrice = obj.optString("totalPrice");
         this.submitOrderTime = obj.optString("submitOrderTime");
         this.storeAddress = obj.optString("storeAddress");
+        this.storePhone=obj.optString("storePhone");
         if (StringUtils.stringIsEmpty(price))
         {
             this.price = "0.0";
@@ -325,5 +326,15 @@ public class OrderDetailInfo
     public void setStoreAddress(String storeAddress)
     {
         this.storeAddress = storeAddress;
+    }
+
+    public String getStorePhone()
+    {
+        return storePhone;
+    }
+
+    public void setStorePhone(String storePhone)
+    {
+        this.storePhone = storePhone;
     }
 }

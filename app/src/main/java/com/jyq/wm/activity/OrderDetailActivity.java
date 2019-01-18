@@ -1,6 +1,8 @@
 package com.jyq.wm.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -32,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class OrderDetailActivity extends BaseActivity implements IRequestListener
 {
@@ -67,6 +70,8 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
     TextView tvPayStatus;
     @BindView(R.id.tv_note)
     TextView tvNote;
+    @BindView(R.id.tv_store_phone)
+    TextView tvStorePhone;
     private String orderId;
     @BindView(R.id.tv_store_name)
     TextView tvStoreName;
@@ -107,6 +112,7 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
                         {
                             tvPhone.setText(phone);
                         }
+                        tvStorePhone.setText(mOrderDetailInfo.getStorePhone());
                         tvStoreName.setText(mOrderDetailInfo.getStoreName());
                         tvStoreAddress.setText(mOrderDetailInfo.getStoreAddress());
                         tvDateline.setText(mOrderDetailInfo.getSubmitOrderTime());
@@ -163,6 +169,7 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
     protected void initEvent()
     {
         ivBack.setOnClickListener(this);
+        tvStorePhone.setOnClickListener(this);
     }
 
     @Override
@@ -222,5 +229,18 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
         {
             finish();
         }
+        else if(v == tvStorePhone)
+        {
+            if(!TextUtils.isEmpty(tvStorePhone.getText().toString()))
+            {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + tvStorePhone.getText().toString());
+                intent.setData(data);
+                startActivity(intent);
+
+            }
+        }
     }
+
+
 }
