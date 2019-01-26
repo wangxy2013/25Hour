@@ -75,7 +75,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                     isOnline = true;
                     MyApplication.getInstance().setOnline(isOnline);
                     ToastUtil.show(getActivity(),"骑手上线操作成功");
-                    mReceiptTv.setText("骑手下线");
+                    mReceiptTv.setText("骑手在线");
+                    mReceiptTv.setBackgroundResource(R.drawable.common_yellow_5dp);
                     break;
 
                 case REQUEST_FAIL:
@@ -85,7 +86,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 case OFF_LINE_SUCCESS:
                     isOnline = false;
                     MyApplication.getInstance().setOnline(isOnline);
-                    mReceiptTv.setText("骑手上线");
+                    mReceiptTv.setText("休息中");
+                    mReceiptTv.setBackgroundResource(R.drawable.common_gray_5dp);
                     ToastUtil.show(getActivity(),"骑手下线操作成功");
                     break;
 
@@ -151,7 +153,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         mTabLayout.addTab(mTabLayout.newTab().setText("成功"));
         mTabLayout.setupWithViewPager(mViewPager);
         //给TabLayout设置关联ViewPager，如果设置了ViewPager，那么ViewPagerAdapter中的getPageTitle()方法返回的就是Tab上的标题
-
+        mReceiptTv.setText("休息中");
+        mReceiptTv.setBackgroundResource(R.drawable.common_gray_5dp);
     }
 
     @Override

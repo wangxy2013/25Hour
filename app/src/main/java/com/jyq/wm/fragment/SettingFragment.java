@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.jyq.wm.R;
 import com.jyq.wm.activity.MainActivity;
 import com.jyq.wm.activity.ModifyPwdActivity;
 import com.jyq.wm.activity.UserDetailActivity;
+import com.jyq.wm.utils.APPUtils;
 import com.jyq.wm.utils.ConfigManager;
 
 import java.util.ArrayList;
@@ -35,6 +37,12 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     ImageView ivSwitch;
     @BindView(R.id.rl_voice)
     RelativeLayout rlVoice;
+
+
+    @BindView(R.id.tv_version)
+    TextView mVersionTv;
+
+
     private View rootView = null;
     private Unbinder unbinder;
 
@@ -84,6 +92,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initViewData()
     {
+        mVersionTv.setText("当前版本号:"+APPUtils.getVersionName(getActivity()));
         if (ConfigManager.instance().getVoiceIsOpend())
         {
             voiceOpend = true;

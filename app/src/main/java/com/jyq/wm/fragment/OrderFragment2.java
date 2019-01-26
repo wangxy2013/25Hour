@@ -73,7 +73,7 @@ public class OrderFragment2 extends BaseFragment implements IRequestListener, Pu
     private OrderAdapter2 mAdapter;
 
     private static final String PICK_UP_REQUEST = "pick_up_request";
-    private static final String GET_ORDER_REQUEST = "get_pickup_order_request";
+    private static final String GET_ORDER_REQUEST = "get_pickup_order_request_2";
     private static final int REQUEST_SUCCESS = 0x01;
     private static final int REQUEST_FAIL = 0x02;
     private static final int ROB_ORDER_SUCCESS = 0x03;

@@ -157,4 +157,19 @@
         android:layout_marginLeft="@dimen/dm_30"
         android:layout_marginRight="@dimen/dm_30"
         android:background="@color/red" />
+
+
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/dm_30"
+        android:gravity="center"
+        android:text="当前版本:"
+        android:textColor="@color/blackA"
+        android:textSize="@dimen/t16"
+        android:textStyle="bold" />
+
+
 </LinearLayout>

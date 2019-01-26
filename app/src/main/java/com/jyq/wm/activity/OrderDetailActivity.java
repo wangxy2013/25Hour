@@ -170,6 +170,7 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
     {
         ivBack.setOnClickListener(this);
         tvStorePhone.setOnClickListener(this);
+        tvPhone.setOnClickListener(this);
     }
 
     @Override
@@ -235,6 +236,17 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
             {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 Uri data = Uri.parse("tel:" + tvStorePhone.getText().toString());
+                intent.setData(data);
+                startActivity(intent);
+
+            }
+        }
+        else if(v == tvPhone)
+        {
+            if(!TextUtils.isEmpty(tvPhone.getText().toString()))
+            {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + tvPhone.getText().toString());
                 intent.setData(data);
                 startActivity(intent);
 

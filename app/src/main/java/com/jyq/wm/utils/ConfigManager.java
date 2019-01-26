@@ -24,7 +24,7 @@ public class ConfigManager
     /**
      * config
      */
-    private static String            CONFIG_NAME        = "qs_config";
+    private static String            CONFIG_NAME        = "qs001_config";
 
     private static final String IS_FRIST_LOGING = "IS_FRIST_LOGING";
     private static final String USER_PWD        = "user_pwd";//密码
