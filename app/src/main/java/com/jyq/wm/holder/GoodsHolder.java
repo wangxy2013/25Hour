@@ -16,12 +16,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  */
 public class GoodsHolder extends RecyclerView.ViewHolder
 {
-    private ImageView mGoodsImageIv;
-    private TextView mPriceTv;
     private TextView mTotalPriceTv;
     private TextView mGoodsNameTv;
     private TextView mSizeTv;
-    private TextView mTributesNamesTv;
 
     private View lineView;
     private Context context;
@@ -31,34 +28,29 @@ public class GoodsHolder extends RecyclerView.ViewHolder
     {
         super(rootView);
         this.context = context;
-        mGoodsImageIv = (ImageView) rootView.findViewById(R.id.iv_goodsImage);
         mGoodsNameTv = (TextView) rootView.findViewById(R.id.tv_goodsName);
-        mPriceTv = (TextView) rootView.findViewById(R.id.tv_price);
         mTotalPriceTv = (TextView) rootView.findViewById(R.id.tv_total_price);
         mSizeTv = (TextView) rootView.findViewById(R.id.tv_size);
-        mTributesNamesTv = (TextView) rootView.findViewById(R.id.tv_tributesNames);
         lineView = (View) rootView.findViewById(R.id.line);
     }
 
 
-    public void setGoodsInfo(GoodsInfo mGoodsInfo, int listSize, int p )
+    public void setGoodsInfo(GoodsInfo mGoodsInfo, int listSize, int p)
     {
-        ImageLoader.getInstance().displayImage(mGoodsInfo.getGoodsImage(), mGoodsImageIv);
-        mGoodsNameTv.setText(mGoodsInfo.getGoodsName());
-        mPriceTv.setText("¥" + mGoodsInfo.getPrice());
+
         mTotalPriceTv.setText("¥" + Double.parseDouble(mGoodsInfo.getPrice()) * Integer.parseInt(mGoodsInfo.getSize()));
-        mSizeTv.setText("* " + mGoodsInfo.getSize());
+        mSizeTv.setText("x " + mGoodsInfo.getSize());
 
         if (StringUtils.stringIsEmpty(mGoodsInfo.getAttributesNamesValues()))
         {
-            mTributesNamesTv.setText("默认");
+            mGoodsNameTv.setText(mGoodsInfo.getGoodsName());
         }
         else
         {
-            mTributesNamesTv.setText(mGoodsInfo.getAttributesNamesValues());
+            mGoodsNameTv.setText(mGoodsInfo.getGoodsName() + "(" + mGoodsInfo.getAttributesNamesValues() + ")");
         }
 
-        if(p == (listSize-1))
+        if (p == (listSize - 1))
         {
             lineView.setVisibility(View.GONE);
         }

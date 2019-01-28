@@ -10,14 +10,14 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:background="@drawable/main_bg">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dm_100"
-            android:layout_marginBottom="@dimen/dm_60"
+            android:layout_marginRight="@dimen/dm_135"
+            android:layout_marginBottom="@dimen/dm_40"
             android:src="@drawable/ic_main_logo" />
 
         <TextView

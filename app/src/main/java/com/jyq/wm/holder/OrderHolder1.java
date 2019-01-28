@@ -86,7 +86,7 @@ public class OrderHolder1 extends RecyclerView.ViewHolder
             @Override
             public void onClick(View v)
             {
-                context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra("ORDER_ID", mOrderInfo.getId()));
+              //  context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra("ORDER_ID", mOrderInfo.getId()));
             }
         });
 

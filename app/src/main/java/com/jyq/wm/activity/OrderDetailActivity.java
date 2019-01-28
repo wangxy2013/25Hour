@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -132,7 +133,17 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
                         {
                             tvPrice.setText("¥:" + price);
                         }
-                        tvPayType.setText(("online".equals(mOrderDetailInfo.getPayType())) ? "微信支付" : "货到付款");
+                        if("online".equals(mOrderDetailInfo.getPayType()))
+                        {
+                            tvPayType.setText("微信支付");
+                            tvPayType.setTextColor(ContextCompat.getColor(OrderDetailActivity.this,R.color.black));
+                        }
+                        else
+
+                        {
+                            tvPayType.setText("货到付款");
+                            tvPayType.setTextColor(ContextCompat.getColor(OrderDetailActivity.this,R.color.redA));
+                        }
                         tvPayStatus.setText(("1".equals(mOrderDetailInfo.getPayStatue())) ? "已支付" : "未支付");
                         tvNote.setText(mOrderDetailInfo.getNote());
                         goodsInfoList.clear();
