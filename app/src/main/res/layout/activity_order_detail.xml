@@ -311,12 +311,12 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/t16" />
 
-                <com.jyq.wm.widget.MaxRecyclerView
+                <com.jyq.qs.widget.MaxRecyclerView
                     android:id="@+id/rv_goods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                </com.jyq.wm.widget.MaxRecyclerView>
+                </com.jyq.qs.widget.MaxRecyclerView>
 
             </LinearLayout>
 

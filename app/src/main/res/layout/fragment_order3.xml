@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jyq.wm.widget.VerticalSwipeRefreshLayout
+    <com.jyq.qs.widget.VerticalSwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.jyq.wm.widget.list.refresh.PullToRefreshRecyclerView
+            <com.jyq.qs.widget.list.refresh.PullToRefreshRecyclerView
                 android:id="@+id/refreshRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -42,5 +42,5 @@
                     android:textSize="@dimen/t16" />
             </LinearLayout>
         </RelativeLayout>
-    </com.jyq.wm.widget.VerticalSwipeRefreshLayout>
+    </com.jyq.qs.widget.VerticalSwipeRefreshLayout>
 </RelativeLayout>
