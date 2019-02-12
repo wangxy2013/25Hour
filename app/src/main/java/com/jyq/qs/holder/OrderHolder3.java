@@ -15,6 +15,7 @@ import com.jyq.qs.activity.BNaviMainActivity;
 import com.jyq.qs.activity.OrderDetailActivity;
 import com.jyq.qs.bean.OrderInfo;
 import com.jyq.qs.listener.MyItemClickListener;
+import com.jyq.qs.utils.StringUtils;
 import com.jyq.qs.utils.ToastUtil;
 
 
@@ -34,12 +35,14 @@ public class OrderHolder3 extends RecyclerView.ViewHolder
     private MyItemClickListener listener;
     private Context context;
     private LinearLayout mItemLayout;
+    private TextView mIndexTv;
 
     public OrderHolder3(View rootView, Context context, MyItemClickListener listener)
     {
         super(rootView);
         this.listener = listener;
         this.context = context;
+        mIndexTv = (TextView) rootView.findViewById(R.id.tv_index);
         mNumberTv = (TextView) rootView.findViewById(R.id.tv_code);
         mShopNameTv = (TextView) rootView.findViewById(R.id.tv_shop_name);
         mTimeTv = (TextView) rootView.findViewById(R.id.tv_time);
@@ -49,27 +52,27 @@ public class OrderHolder3 extends RecyclerView.ViewHolder
         mPikupTv = (TextView) rootView.findViewById(R.id.tv_pickup);
         mPayStyleTv = (TextView) rootView.findViewById(R.id.tv_pay_style);
         mNavigationTv = (TextView) rootView.findViewById(R.id.tv_navigation);
-        mItemLayout = (LinearLayout)rootView.findViewById(R.id.ll_item);
+        mItemLayout = (LinearLayout) rootView.findViewById(R.id.ll_item);
     }
 
 
     public void setOrderInfo(final OrderInfo mOrderInfo, final int p)
     {
-
+        mIndexTv.setText(StringUtils.getIndex(p));
         mNumberTv.setText(mOrderInfo.getOrderId());
         mShopNameTv.setText(mOrderInfo.getStoreName());
         mTimeTv.setText(mOrderInfo.getAddTime());
-        mPhoneTv.setText("客户电话:" + mOrderInfo.getPhone());
-        mNameTv.setText("客户姓名:" + mOrderInfo.getName());
-        mAddressTv.setText("客户地址:"+mOrderInfo.getAddress());
+        mPhoneTv.setText(mOrderInfo.getPhone());
+        mNameTv.setText(mOrderInfo.getName());
+        mAddressTv.setText("客户地址:" + mOrderInfo.getAddress());
         mPayStyleTv.setText("offline".equals(mOrderInfo.getPayType()) ? "货到付款" : "微信支付");
         if ("offline".equals(mOrderInfo.getPayType()))
         {
-            mPayStyleTv.setTextColor(ContextCompat.getColor(context,R.color.redA));
+            mPayStyleTv.setTextColor(ContextCompat.getColor(context, R.color.redA));
         }
         else
         {
-            mPayStyleTv.setTextColor(ContextCompat.getColor(context,R.color.green));
+            mPayStyleTv.setTextColor(ContextCompat.getColor(context, R.color.green));
         }
         mPikupTv.setOnClickListener(new View.OnClickListener()
         {
@@ -103,8 +106,7 @@ public class OrderHolder3 extends RecyclerView.ViewHolder
             @Override
             public void onClick(View v)
             {
-                context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra
-                        ("ORDER_ID", mOrderInfo.getOrderId()));
+                context.startActivity(new Intent(context, OrderDetailActivity.class).putExtra("ORDER_ID", mOrderInfo.getOrderId()));
             }
         });
 
@@ -113,12 +115,12 @@ public class OrderHolder3 extends RecyclerView.ViewHolder
             @Override
             public void onClick(View v)
             {
-                if(!TextUtils.isEmpty(mOrderInfo.getPhone()))
+                if (!TextUtils.isEmpty(mOrderInfo.getPhone()))
                 {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     Uri data = Uri.parse("tel:" + mOrderInfo.getPhone());
                     intent.setData(data);
-                    context. startActivity(intent);
+                    context.startActivity(intent);
 
                 }
             }

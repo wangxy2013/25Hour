@@ -77,6 +77,9 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
     TextView tvStoreName;
     @BindView(R.id.tv_store_address)
     TextView tvStoreAddress;
+    @BindView(R.id.tv_goods_allprice)
+    TextView tvGoodsAllprice;
+
     private GoodsAdapter mGoodsAdapter;
     private List<GoodsInfo> goodsInfoList = new ArrayList<>();
     private static final String GET_ORDER_DETAIL = "get_order_detail";
@@ -117,20 +120,20 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
                         tvStoreAddress.setText(mOrderDetailInfo.getStoreAddress());
                         tvDateline.setText(mOrderDetailInfo.getSubmitOrderTime());
                         tvAddress.setText(mOrderDetailInfo.getAddress());
-                        tvDeposit.setText("¥:" + mOrderDetailInfo.getDeposit());
-                        tvDeliveryFee.setText("¥:" + mOrderDetailInfo.getDeliveryFee());
-                        tvMinusPrice.setText("¥:" + mOrderDetailInfo.getMinusPrice());
-                        tvTotalPrice.setText("¥:" + mOrderDetailInfo.getTotalPrice());
+                        tvDeposit.setText("¥" + mOrderDetailInfo.getDeposit());
+                        tvDeliveryFee.setText("¥" + mOrderDetailInfo.getDeliveryFee());
+                        tvMinusPrice.setText("¥" + mOrderDetailInfo.getMinusPrice());
+                        tvTotalPrice.setText("¥" + mOrderDetailInfo.getTotalPrice());
 
                         String price = mOrderDetailInfo.getPrice();
 
                         if (StringUtils.stringIsEmpty(price))
                         {
-                            tvPrice.setText("¥:0");
+                            tvPrice.setText("¥0");
                         }
                         else
                         {
-                            tvPrice.setText("¥:" + price);
+                            tvPrice.setText("¥" + price);
                         }
                         if("online".equals(mOrderDetailInfo.getPayType()))
                         {
@@ -147,6 +150,14 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
                         tvNote.setText(mOrderDetailInfo.getNote());
                         goodsInfoList.clear();
                         goodsInfoList.addAll(mOrderDetailInfo.getGoodsInfoList());
+                        double goodsAllPrice=0;
+
+                        for (int i = 0; i <goodsInfoList.size() ; i++)
+                        {
+                            goodsAllPrice +=Double.parseDouble(goodsInfoList.get(i).getPrice()) * Integer.parseInt(goodsInfoList.get(i).getSize());
+                        }
+
+                        tvGoodsAllprice.setText("¥" +goodsAllPrice);
                         mGoodsAdapter.notifyDataSetChanged();
                     }
 

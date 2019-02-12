@@ -16,18 +16,21 @@
             android:id="@+id/tv_goodsName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black" />
+            android:textSize="@dimen/t16"
+            android:textColor="@color/blue" />
 
         <TextView
             android:id="@+id/tv_total_price"
             android:layout_width="wrap_content"
+            android:minWidth="@dimen/dm_50"
+            android:gravity="right"
+            android:textSize="@dimen/t16"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/dm_10"
-            android:textColor="@color/black" />
+            android:textColor="@color/blue" />
 
         <TextView
-
             android:id="@+id/tv_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

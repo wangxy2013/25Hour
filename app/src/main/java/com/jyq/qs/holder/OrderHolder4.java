@@ -14,6 +14,7 @@ import com.jyq.qs.R;
 import com.jyq.qs.activity.OrderDetailActivity;
 import com.jyq.qs.bean.OrderInfo;
 import com.jyq.qs.listener.MyItemClickListener;
+import com.jyq.qs.utils.StringUtils;
 
 
 /**
@@ -32,12 +33,14 @@ public class OrderHolder4 extends RecyclerView.ViewHolder
     private MyItemClickListener listener;
     private Context context;
     private LinearLayout mItemLayout;
+    private TextView mIndexTv;
 
     public OrderHolder4(View rootView, Context context, MyItemClickListener listener)
     {
         super(rootView);
         this.listener = listener;
         this.context = context;
+        mIndexTv = (TextView) rootView.findViewById(R.id.tv_index);
         mNumberTv = (TextView) rootView.findViewById(R.id.tv_code);
         mShopNameTv = (TextView) rootView.findViewById(R.id.tv_shop_name);
         mTimeTv = (TextView) rootView.findViewById(R.id.tv_time);
@@ -53,12 +56,12 @@ public class OrderHolder4 extends RecyclerView.ViewHolder
 
     public void setOrderInfo(final OrderInfo mOrderInfo, final int p)
     {
-
+        mIndexTv.setText(StringUtils.getIndex(p));
         mNumberTv.setText(mOrderInfo.getOrderId());
         mShopNameTv.setText(mOrderInfo.getStoreName());
         mTimeTv.setText(mOrderInfo.getAddTime());
-        mPhoneTv.setText("客户电话:" + mOrderInfo.getPhone());
-        mNameTv.setText("客户姓名:" + mOrderInfo.getName());
+        mPhoneTv.setText(mOrderInfo.getPhone());
+        mNameTv.setText(mOrderInfo.getName());
         mAddressTv.setText("客户地址:" + mOrderInfo.getAddress());
         mPayStyleTv.setText("offline".equals(mOrderInfo.getPayType()) ? "货到付款" : "微信支付");
         if ("offline".equals(mOrderInfo.getPayType()))

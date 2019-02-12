@@ -1,6 +1,7 @@
 package com.jyq.qs.holder;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -38,7 +39,14 @@ public class GoodsHolder extends RecyclerView.ViewHolder
 
         mTotalPriceTv.setText("¥" + Double.parseDouble(mGoodsInfo.getPrice()) * Integer.parseInt(mGoodsInfo.getSize()));
         mSizeTv.setText("x " + mGoodsInfo.getSize());
-
+        if(  Integer.parseInt(mGoodsInfo.getSize())>1)
+        {
+            mSizeTv.setTextColor(ContextCompat.getColor(context,R.color.redA));
+        }
+        else
+        {
+            mSizeTv.setTextColor(ContextCompat.getColor(context,R.color.black));
+        }
         if (StringUtils.stringIsEmpty(mGoodsInfo.getAttributesNamesValues()))
         {
             mGoodsNameTv.setText(mGoodsInfo.getGoodsName());
