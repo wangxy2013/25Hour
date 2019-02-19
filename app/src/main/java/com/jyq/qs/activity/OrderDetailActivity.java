@@ -138,7 +138,8 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
                         if("online".equals(mOrderDetailInfo.getPayType()))
                         {
                             tvPayType.setText("微信支付");
-                            tvPayType.setTextColor(ContextCompat.getColor(OrderDetailActivity.this,R.color.black));
+                            tvPayType.setTextColor(ContextCompat.getColor(OrderDetailActivity
+                                    .this,R.color.green));
                         }
                         else
 
@@ -154,7 +155,7 @@ public class OrderDetailActivity extends BaseActivity implements IRequestListene
 
                         for (int i = 0; i <goodsInfoList.size() ; i++)
                         {
-                            goodsAllPrice +=Double.parseDouble(goodsInfoList.get(i).getPrice()) * Integer.parseInt(goodsInfoList.get(i).getSize());
+                            goodsAllPrice +=Double.parseDouble(goodsInfoList.get(i).getGoodsTotalPrice());
                         }
 
                         tvGoodsAllprice.setText("¥" +goodsAllPrice);

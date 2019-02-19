@@ -23,7 +23,8 @@ public class GoodsInfo
     private String size;//": 15,
     private String isDiscount;//": null,
     private String unit;//": null
-
+    private String goodsTotalPrice;
+    private String finalPrice;
 
     public GoodsInfo(JSONObject obj)
     {
@@ -36,6 +37,8 @@ public class GoodsInfo
         this.size = obj.optString("size");
         this.isDiscount = obj.optString("isDiscount");
         this.unit = obj.optString("unit");
+        this.goodsTotalPrice = obj.optString("goodsTotalPrice");
+        this.finalPrice = obj.optString("finalPrice");
     }
 
     public String getGoodsName()
@@ -126,5 +129,25 @@ public class GoodsInfo
     public void setUnit(String unit)
     {
         this.unit = unit;
+    }
+
+    public String getGoodsTotalPrice()
+    {
+        return goodsTotalPrice;
+    }
+
+    public void setGoodsTotalPrice(String goodsTotalPrice)
+    {
+        this.goodsTotalPrice = goodsTotalPrice;
+    }
+
+    public String getFinalPrice()
+    {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(String finalPrice)
+    {
+        this.finalPrice = finalPrice;
     }
 }

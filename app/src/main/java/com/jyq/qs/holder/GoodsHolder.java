@@ -37,7 +37,7 @@ public class GoodsHolder extends RecyclerView.ViewHolder
     public void setGoodsInfo(GoodsInfo mGoodsInfo, int listSize, int p)
     {
 
-        mTotalPriceTv.setText("¥" + Double.parseDouble(mGoodsInfo.getPrice()) * Integer.parseInt(mGoodsInfo.getSize()));
+        mTotalPriceTv.setText("¥" + Double.parseDouble(mGoodsInfo.getGoodsTotalPrice()) );
         mSizeTv.setText("x " + mGoodsInfo.getSize());
         if(  Integer.parseInt(mGoodsInfo.getSize())>1)
         {
